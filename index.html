@@ -12,16 +12,43 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            
-            /* --- Parallax Background Setup --- */
-            /* 确保 'pixel-background.png' 与你上传的图片文件名完全一致 */
-            background-image: url('website_background.png'); 
+            background-color: #1a1a2e; /* 一个深色的备用背景色 */
+            /* 移除 body 上的背景图设置 */
+        }
+
+        /* --- Multi-Layer Parallax Setup --- */
+        .parallax-bg {
+            position: fixed; /* 固定在视窗上 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-repeat: repeat;
-            /* 移除 background-attachment: fixed; */
-            /* 将背景图的初始位置设置为水平居中，垂直顶部对齐 */
-            background-position: center top; 
+            background-position: center top;
             background-size: auto;
-            background-color: #333;
+            /* will-change 告诉浏览器这个元素的 transform 属性会频繁变动，可以进行优化 */
+            will-change: transform; 
+        }
+
+        #back-layer {
+            background-image: url('back.png');
+            z-index: -3; /* 最靠后 */
+        }
+
+        #mid-layer {
+            background-image: url('mid.png');
+            z-index: -2; /* 在中间 */
+        }
+
+        #front-layer {
+            background-image: url('front.png');
+            z-index: -1; /* 最靠前 (但在内容之下) */
+        }
+        
+        /* --- Content Styling --- */
+        .content-container {
+            position: relative; /* 创建新的堆叠上下文 */
+            z-index: 1; /* 确保内容在所有背景层之上 */
         }
 
         .content-wrapper {
@@ -35,7 +62,7 @@
 
         .header-container {
             padding: 3rem 1rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); 
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
         }
 
         .header-container h1, .header-container p {
@@ -45,69 +72,76 @@
     </style>
 </head>
 <body>
-    <div class="container header-container text-center">
-        <h1 class="fw-bold display-4">Aincrad</h1>
-        <p class="text-light">or SHIGURE</p>
-    </div>
 
-    <div class="container content-wrapper">
-        <div class="row">
-            <div class="col-md-4 text-center mb-4 mb-md-0">
-                <img src="https://avatars.githubusercontent.com/u/199500481?v=4" class="img-fluid rounded-circle" alt="Aincrad's avatar" style="max-width: 60%;">
-            </div>
+    <div id="back-layer" class="parallax-bg"></div>
+    <div id="mid-layer" class="parallax-bg"></div>
+    <div id="front-layer" class="parallax-bg"></div>
 
-            <div class="col-md-8">
-                <div class="mb-5">
-                    <h2 class="fw-bold">Your role</h2>
-                    <p class="lead">Unity Game Developer, Pixel Artist, 8-bit Music Lover</p>
-                    <span class="d-block mb-1">📧 aincrad1227@email.com</span>
-                    <span class="d-block mb-2 text-muted">📞 Guess my phone number</span>
-                    <a href="https://github.com/Aincrad179" target="_blank" class="btn btn-dark">GitHub Profile</a>
+    <main class="content-container">
+        <div class="container header-container text-center">
+            <h1 class="fw-bold display-4">Aincrad</h1>
+            <p class="text-light">or SHIGURE</p>
+        </div>
+
+        <div class="container content-wrapper">
+            <div class="row">
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <img src="https://avatars.githubusercontent.com/u/199500481?v=4" class="img-fluid rounded-circle" alt="Aincrad's avatar" style="max-width: 60%;">
                 </div>
 
-                <div class="mb-5">
-                    <h2 class="fw-bold">Education</h2>
-                    <h5 class="fw-bold">Your University Name</h5>
-                    <p class="text-muted mb-1">20XX - 20XX</p>
-                    <p>Bachelor of Engineering in Computer Science<br>Additional description about your major or achievements.</p>
-                </div>
-
-                <div class="mb-5">
-                    <h2 class="fw-bold">Work Experience</h2>
-                    <div class="mb-3">
-                        <h5 class="fw-bold">Experience name 1</h5>
-                        <p>Experience description</p>
+                <div class="col-md-8">
+                    <div class="mb-5">
+                        <h2 class="fw-bold">Your role</h2>
+                        <p class="lead">Unity Game Developer, Pixel Artist, 8-bit Music Lover</p>
+                        <span class="d-block mb-1">📧 aincrad1227@email.com</span>
+                        <span class="d-block mb-2 text-muted">📞 Guess my phone number</span>
+                        <a href="https://github.com/Aincrad179" target="_blank" class="btn btn-dark">GitHub Profile</a>
                     </div>
-                    <div class="mb-3">
-                        <h5 class="fw-bold">Experience name 2</h5>
-                        <p>Experience description</p>
-                    </div>
-                </div>
 
-                <div>
-                    <h2 class="fw-bold">Projects</h2>
-                    <div class="p-3 border rounded bg-light">
-                        <h5 class="fw-bold">2D Platformer Game</h5>
-                        <p>A 2D horizontal platformer game developed with <strong>Unity and C#</strong>. Implemented core mechanics including character movement, jumping, animation state machines, and basic enemy AI. The project focuses on creating a responsive and engaging player experience.</p>
-                        <a href="#" class="btn btn-outline-primary btn-sm">View on GitHub</a>
+                    <div class="mb-5">
+                        <h2 class="fw-bold">Education</h2>
+                        <h5 class="fw-bold">Your University Name</h5>
+                        <p class="text-muted mb-1">20XX - 20XX</p>
+                        <p>Bachelor of Engineering in Computer Science<br>Additional description about your major or achievements.</p>
+                    </div>
+
+                    <div class="mb-5">
+                        <h2 class="fw-bold">Work Experience</h2>
+                        </div>
+
+                    <div>
+                        <h2 class="fw-bold">Projects</h2>
+                        <div class="p-3 border rounded bg-light">
+                            <h5 class="fw-bold">2D Platformer Game</h5>
+                            <p>A 2D horizontal platformer game developed with <strong>Unity and C#</strong>. Implemented core mechanics including character movement, jumping, animation state machines, and basic enemy AI.</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm">View on GitHub</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
-        // 监听整个窗口的滚动事件
-        window.addEventListener('scroll', function() {
-            // 获取当前页面垂直滚动的距离
-            const scrollY = window.pageYOffset;
+        document.addEventListener('DOMContentLoaded', function() {
+            const backLayer = document.getElementById('back-layer');
+            const midLayer = document.getElementById('mid-layer');
+            const frontLayer = document.getElementById('front-layer');
 
-            // 这里是实现视差效果的关键：
-            // 我们将背景的垂直位置 (background-position-y) 设置为滚动距离的一半。
-            // '0.5' 这个值可以调整，值越小，背景滚动得越慢。
-            document.body.style.backgroundPositionY = scrollY * 0.5 + 'px';
+            window.addEventListener('scroll', function() {
+                const scrollY = window.pageYOffset;
+
+                // 'back' layer scrolls the slowest
+                backLayer.style.transform = `translateY(${scrollY * 0.1}px)`;
+
+                // 'mid' layer scrolls at a medium speed
+                midLayer.style.transform = `translateY(${scrollY * 0.2}px)`;
+
+                // 'front' layer scrolls the fastest
+                frontLayer.style.transform = `translateY(${scrollY * 0.4}px)`;
+            });
         });
     </script>
     </body>
