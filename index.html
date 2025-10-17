@@ -15,7 +15,7 @@
             
             /* --- Parallax Background Setup --- */
             /* 确保 'pixel-background.png' 与你上传的图片文件名完全一致 */
-            background-image: url('website_background.png'); 
+            background-image: url('pixel-background.png'); 
             background-repeat: repeat;
             /* 移除 background-attachment: fixed; */
             /* 将背景图的初始位置设置为水平居中，垂直顶部对齐 */
@@ -52,4 +52,63 @@
 
     <div class="container content-wrapper">
         <div class="row">
-            <div class="col-md-4
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <img src="https://avatars.githubusercontent.com/u/199500481?v=4" class="img-fluid rounded-circle" alt="Aincrad's avatar" style="max-width: 60%;">
+            </div>
+
+            <div class="col-md-8">
+                <div class="mb-5">
+                    <h2 class="fw-bold">Your role</h2>
+                    <p class="lead">Unity Game Developer, Pixel Artist, 8-bit Music Lover</p>
+                    <span class="d-block mb-1">📧 aincrad1227@email.com</span>
+                    <span class="d-block mb-2 text-muted">📞 Guess my phone number</span>
+                    <a href="https://github.com/Aincrad179" target="_blank" class="btn btn-dark">GitHub Profile</a>
+                </div>
+
+                <div class="mb-5">
+                    <h2 class="fw-bold">Education</h2>
+                    <h5 class="fw-bold">Your University Name</h5>
+                    <p class="text-muted mb-1">20XX - 20XX</p>
+                    <p>Bachelor of Engineering in Computer Science<br>Additional description about your major or achievements.</p>
+                </div>
+
+                <div class="mb-5">
+                    <h2 class="fw-bold">Work Experience</h2>
+                    <div class="mb-3">
+                        <h5 class="fw-bold">Experience name 1</h5>
+                        <p>Experience description</p>
+                    </div>
+                    <div class="mb-3">
+                        <h5 class="fw-bold">Experience name 2</h5>
+                        <p>Experience description</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="fw-bold">Projects</h2>
+                    <div class="p-3 border rounded bg-light">
+                        <h5 class="fw-bold">2D Platformer Game</h5>
+                        <p>A 2D horizontal platformer game developed with <strong>Unity and C#</strong>. Implemented core mechanics including character movement, jumping, animation state machines, and basic enemy AI. The project focuses on creating a responsive and engaging player experience.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        // 监听整个窗口的滚动事件
+        window.addEventListener('scroll', function() {
+            // 获取当前页面垂直滚动的距离
+            const scrollY = window.pageYOffset;
+
+            // 这里是实现视差效果的关键：
+            // 我们将背景的垂直位置 (background-position-y) 设置为滚动距离的一半。
+            // '0.5' 这个值可以调整，值越小，背景滚动得越慢。
+            document.body.style.backgroundPositionY = scrollY * 0.5 + 'px';
+        });
+    </script>
+    </body>
+</html>
