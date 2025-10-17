@@ -13,38 +13,33 @@
         body {
             font-family: 'Inter', sans-serif;
             
-            /* --- Custom Pixel Background Setup --- */
+            /* --- Parallax Background Setup --- */
             /* 确保 'pixel-background.png' 与你上传的图片文件名完全一致 */
-            background-image: url('website_background.png'); 
-            background-repeat: repeat; /* 平铺背景图 */
-            background-attachment: fixed; /* 背景图在滚动时固定不动 */
-            background-size: auto; /* 保持像素图的原始大小进行平铺，可根据需要调整 */
-            background-color: #333; /* 图片加载失败时的深色备用背景 */
+            background-image: url('pixel-background.png'); 
+            background-repeat: repeat;
+            /* 移除 background-attachment: fixed; */
+            /* 将背景图的初始位置设置为水平居中，垂直顶部对齐 */
+            background-position: center top; 
+            background-size: auto;
+            background-color: #333;
         }
 
-        /* * 为了让内容在复杂的背景图上也能清晰阅读，
-         * 我们为主内容区域的容器添加一个带透明度的背景和阴影。
-        */
         .content-wrapper {
-            background-color: rgba(255, 255, 255, 0.9); /* 90% 不透明的白色背景 */
-            border-radius: 8px; /* 轻微的圆角 */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* 柔和的阴影效果 */
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             margin-top: 2rem;
             margin-bottom: 2rem;
-            padding: 2rem; /* 增加内边距让内容更舒展 */
+            padding: 2rem;
         }
 
-        /* * 顶部的标题区域我们不希望有背景，
-         * 这样可以直接显示背景图，更有沉浸感。
-        */
         .header-container {
             padding: 3rem 1rem;
-            /* 给文字添加一点阴影，使其在背景上更突出 */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); 
         }
 
         .header-container h1, .header-container p {
-            color: white; /* 如果背景偏暗，白色文字效果更好 */
+            color: white;
         }
 
     </style>
@@ -57,50 +52,4 @@
 
     <div class="container content-wrapper">
         <div class="row">
-            <div class="col-md-4 text-center mb-4 mb-md-0">
-                <img src="https://avatars.githubusercontent.com/u/199500481?v=4" class="img-fluid rounded-circle" alt="Aincrad's avatar" style="max-width: 60%;">
-            </div>
-
-            <div class="col-md-8">
-                <div class="mb-5">
-                    <h2 class="fw-bold">Your role</h2>
-                    <p class="lead">Unity Game Developer, Pixel Artist, 8-bit Music Lover</p>
-                    <span class="d-block mb-1">📧 aincrad1227@email.com</span>
-                    <span class="d-block mb-2 text-muted">📞 Guess my phone number</span>
-                    <a href="https://github.com/Aincrad179" target="_blank" class="btn btn-dark">GitHub Profile</a>
-                </div>
-
-                <div class="mb-5">
-                    <h2 class="fw-bold">Education</h2>
-                    <h5 class="fw-bold">Your University Name</h5>
-                    <p class="text-muted mb-1">20XX - 20XX</p>
-                    <p>Bachelor of Engineering in Computer Science<br>Additional description about your major or achievements.</p>
-                </div>
-
-                <div class="mb-5">
-                    <h2 class="fw-bold">Work Experience</h2>
-                    <div class="mb-3">
-                        <h5 class="fw-bold">Experience name 1</h5>
-                        <p>Experience description</p>
-                    </div>
-                    <div class="mb-3">
-                        <h5 class="fw-bold">Experience name 2</h5>
-                        <p>Experience description</p>
-                    </div>
-                </div>
-
-                <div>
-                    <h2 class="fw-bold">Projects</h2>
-                    <div class="p-3 border rounded bg-light">
-                        <h5 class="fw-bold">2D Platformer Game</h5>
-                        <p>A 2D horizontal platformer game developed with <strong>Unity and C#</strong>. Implemented core mechanics including character movement, jumping, animation state machines, and basic enemy AI. The project focuses on creating a responsive and engaging player experience.</p>
-                        <a href="#" class="btn btn-outline-primary btn-sm">View on GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
-</html>
+            <div class="col-md-4
