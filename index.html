@@ -36,46 +36,18 @@
         }
 
         /* --- Background Set 1 --- */
-        #back-layer {
-            background-image: url('back.png');
-            z-index: -3;
-        }
-        #mid-layer {
-            background-image: url('mid.png');
-            z-index: -2;
-        }
-        #front-layer {
-            background-image: url('front.png');
-            z-index: -1;
-        }
+        #back-layer { background-image: url('back.png'); z-index: -3; }
+        #mid-layer { background-image: url('mid.png'); z-index: -2; }
+        #front-layer { background-image: url('front.png'); z-index: -1; }
         
         /* --- Background Set 2 --- */
-        #back2-layer {
-            background-image: url('back2.png');
-            z-index: -7;
-            opacity: 0;
-        }
-        #far2-layer {
-            background-image: url('far2.png');
-            z-index: -6;
-            opacity: 0;
-        }
-        #mid2-layer {
-            background-image: url('mid2.png');
-            z-index: -5;
-            opacity: 0;
-        }
-        #front2-layer {
-            background-image: url('front2.png');
-            z-index: -4;
-            opacity: 0;
-        }
+        #back2-layer { background-image: url('back2.png'); z-index: -7; opacity: 0; }
+        #far2-layer { background-image: url('far2.png'); z-index: -6; opacity: 0; }
+        #mid2-layer { background-image: url('mid2.png'); z-index: -5; opacity: 0; }
+        #front2-layer { background-image: url('front2.png'); z-index: -4; opacity: 0; }
         
         /* --- Content Styling --- */
-        .content-container {
-            position: relative;
-            z-index: 1;
-        }
+        .content-container { position: relative; z-index: 1; }
         .content-wrapper {
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
@@ -88,9 +60,7 @@
             padding: 3rem 1rem;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
         }
-        .header-container h1, .header-container p {
-            color: white;
-        }
+        .header-container h1, .header-container p { color: white; }
         .jellyfish-avatar {
             max-width: 60%;
             border-radius: 8px;
@@ -106,7 +76,6 @@
     <div id="back-layer" class="parallax-bg"></div>
     <div id="mid-layer" class="parallax-bg"></div>
     <div id="front-layer" class="parallax-bg"></div>
-    
     <div id="back2-layer" class="parallax-bg"></div>
     <div id="far2-layer" class="parallax-bg"></div>
     <div id="mid2-layer" class="parallax-bg"></div>
@@ -133,23 +102,17 @@
                         <span class="d-block mb-2 text-muted">📞 Just guess my phone number</span>
                         <a href="https://github.com/Aincrad179" target="_blank" class="btn btn-dark">GitHub Profile</a>
                     </div>
-
                     <div class="mb-5">
                         <h2 class="fw-bold">Game</h2>
                         <p>These are the games I have created, including both solo projects and collaborative efforts developed during game jams.</p>
                         <a href="https://aincrad179.itch.io" target="_blank" class="btn btn-danger">Visit my itch.io Page</a>
                     </div>
-
                     <div class="mb-5">
                         <h2 class="fw-bold">Music</h2>
                         <p>I also greatly enjoy creating 8-bit/chiptune style music:</p>
                         <ul class="list-group">
-                            <li class="list-group-item">
-                                <a href="https://www.bilibili.com/video/BV1vYuFzAEDe/" target="_blank">8-bit Music Track 1</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="https://www.bilibili.com/video/BV1kGNqzqEZs/" target="_blank">8-bit Music Track 2</a>
-                            </li>
+                            <li class="list-group-item"><a href="https://www.bilibili.com/video/BV1vYuFzAEDe/" target="_blank">8-bit Music Track 1</a></li>
+                            <li class="list-group-item"><a href="https://www.bilibili.com/video/BV1kGNqzqEZs/" target="_blank">8-bit Music Track 2</a></li>
                         </ul>
                     </div>
                 </div>
@@ -161,53 +124,52 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all layers
-            const backLayer = document.getElementById('back-layer');
-            const midLayer = document.getElementById('mid-layer');
-            const frontLayer = document.getElementById('front-layer');
-            const back2Layer = document.getElementById('back2-layer');
-            const far2Layer = document.getElementById('far2-layer');
-            const mid2Layer = document.getElementById('mid2-layer');
-            const front2Layer = document.getElementById('front2-layer');
+            // Get all layer elements
+            const layers = {
+                set1: [
+                    { el: document.getElementById('back-layer'), speed: 0.2 },
+                    { el: document.getElementById('mid-layer'), speed: 0.4 },
+                    { el: document.getElementById('front-layer'), speed: 0.7 }
+                ],
+                set2: [
+                    { el: document.getElementById('back2-layer'), speed: 0.1 },
+                    { el: document.getElementById('far2-layer'), speed: 0.25 },
+                    { el: document.getElementById('mid2-layer'), speed: 0.45 },
+                    { el: document.getElementById('front2-layer'), speed: 0.8 }
+                ]
+            };
 
-            const triggerPoint = 300; 
+            const triggerPoint = 300; // Pixels to scroll before switching
+            let ticking = false; // Flag for requestAnimationFrame
+            let lastScrollY = 0;
+
+            function updateLayers() {
+                // Apply parallax transform to all layers
+                for (const set in layers) {
+                    layers[set].forEach(layer => {
+                        if (layer.el) {
+                            layer.el.style.transform = `translateY(${lastScrollY * layer.speed}px)`;
+                        }
+                    });
+                }
+
+                // Handle the fade-in/fade-out logic
+                if (lastScrollY > triggerPoint) {
+                    layers.set1.forEach(layer => layer.el.style.opacity = '0');
+                    layers.set2.forEach(layer => layer.el.style.opacity = '1');
+                } else {
+                    layers.set1.forEach(layer => layer.el.style.opacity = '1');
+                    layers.set2.forEach(layer => layer.el.style.opacity = '0');
+                }
+
+                ticking = false;
+            }
 
             window.addEventListener('scroll', function() {
-                const scrollY = window.pageYOffset;
-
-                // --- Parallax calculation for ALL layers (Speeds adjusted for better visibility) ---
-                // Set 1 Speeds
-                backLayer.style.transform = `translateY(${scrollY * 0.2}px)`;
-                midLayer.style.transform = `translateY(${scrollY * 0.4}px)`;
-                frontLayer.style.transform = `translateY(${scrollY * 0.7}px)`;
-
-                // Set 2 Speeds
-                back2Layer.style.transform = `translateY(${scrollY * 0.1}px)`;
-                far2Layer.style.transform = `translateY(${scrollY * 0.25}px)`;
-                mid2Layer.style.transform = `translateY(${scrollY * 0.45}px)`;
-                front2Layer.style.transform = `translateY(${scrollY * 0.8}px)`;
-
-                // --- Opacity change logic ---
-                if (scrollY > triggerPoint) {
-                    // Show set 2, hide set 1
-                    backLayer.style.opacity = '0';
-                    midLayer.style.opacity = '0';
-                    frontLayer.style.opacity = '0';
-                    
-                    back2Layer.style.opacity = '1';
-                    far2Layer.style.opacity = '1';
-                    mid2Layer.style.opacity = '1';
-                    front2Layer.style.opacity = '1';
-                } else {
-                    // Show set 1, hide set 2
-                    backLayer.style.opacity = '1';
-                    midLayer.style.opacity = '1';
-                    frontLayer.style.opacity = '1';
-
-                    back2Layer.style.opacity = '0';
-                    far2Layer.style.opacity = '0';
-                    mid2Layer.style.opacity = '0';
-                    front2Layer.style.opacity = '0';
+                lastScrollY = window.pageYOffset;
+                if (!ticking) {
+                    window.requestAnimationFrame(updateLayers);
+                    ticking = true;
                 }
             });
         });
