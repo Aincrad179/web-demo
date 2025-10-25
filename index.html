@@ -31,9 +31,7 @@
             image-rendering: -webkit-crisp-edges;
             image-rendering: pixelated;
             
-            will-change: transform, opacity; /* Add opacity to optimization hint */
-            
-            /* KEY FOR FADING EFFECT: Smoothly transition the opacity over 0.5 seconds */
+            will-change: transform, opacity;
             transition: opacity 0.5s ease-in-out;
         }
 
@@ -54,23 +52,23 @@
         /* --- Background Set 2 --- */
         #back2-layer {
             background-image: url('back2.png');
-            z-index: -7; /* Furthest back of the new set */
-            opacity: 0; /* Initially hidden */
+            z-index: -7;
+            opacity: 0;
         }
         #far2-layer {
             background-image: url('far2.png');
             z-index: -6;
-            opacity: 0; /* Initially hidden */
+            opacity: 0;
         }
         #mid2-layer {
             background-image: url('mid2.png');
             z-index: -5;
-            opacity: 0; /* Initially hidden */
+            opacity: 0;
         }
         #front2-layer {
             background-image: url('front2.png');
             z-index: -4;
-            opacity: 0; /* Initially hidden */
+            opacity: 0;
         }
         
         /* --- Content Styling --- */
@@ -93,6 +91,14 @@
         .header-container h1, .header-container p {
             color: white;
         }
+        .jellyfish-avatar {
+            max-width: 60%;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body>
@@ -107,44 +113,83 @@
     <div id="front2-layer" class="parallax-bg"></div>
 
     <main class="content-container">
-        </main>
+        <div class="container header-container text-center">
+            <h1 class="fw-bold display-4">This is a personal website.</h1>
+            <p class="text-light">:)</p>
+        </div>
+
+        <div class="container content-wrapper">
+            <div class="row">
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <img src="https://avatars.githubusercontent.com/u/199500481?v=4" class="img-fluid rounded-circle" alt="Aincrad's avatar" style="max-width: 60%;">
+                    <img src="水母娘头像.png" class="img-fluid jellyfish-avatar" alt="Jellyfish girl avatar">
+                </div>
+
+                <div class="col-md-8">
+                    <div class="mb-5">
+                        <h2 class="fw-bold">Aincrad</h2>
+                        <p class="lead">Unity Game Developer, Pixel Artist, 8-bit Music Lover</p>
+                        <span class="d-block mb-1">📧 aincrad1227@email.com</span>
+                        <span class="d-block mb-2 text-muted">📞 Just guess my phone number</span>
+                        <a href="https://github.com/Aincrad179" target="_blank" class="btn btn-dark">GitHub Profile</a>
+                    </div>
+
+                    <div class="mb-5">
+                        <h2 class="fw-bold">Game</h2>
+                        <p>These are the games I have created, including both solo projects and collaborative efforts developed during game jams.</p>
+                        <a href="https://aincrad179.itch.io" target="_blank" class="btn btn-danger">Visit my itch.io Page</a>
+                    </div>
+
+                    <div class="mb-5">
+                        <h2 class="fw-bold">Music</h2>
+                        <p>I also greatly enjoy creating 8-bit/chiptune style music:</p>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="https://www.bilibili.com/video/BV1vYuFzAEDe/" target="_blank">8-bit Music Track 1</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="https://www.bilibili.com/video/BV1kGNqzqEZs/" target="_blank">8-bit Music Track 2</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all layers from Set 1
+            // Get all layers
             const backLayer = document.getElementById('back-layer');
             const midLayer = document.getElementById('mid-layer');
             const frontLayer = document.getElementById('front-layer');
-            
-            // Get all layers from Set 2
             const back2Layer = document.getElementById('back2-layer');
             const far2Layer = document.getElementById('far2-layer');
             const mid2Layer = document.getElementById('mid2-layer');
             const front2Layer = document.getElementById('front2-layer');
 
-            // Define the scroll distance (in pixels) to trigger the background change
             const triggerPoint = 300; 
 
             window.addEventListener('scroll', function() {
                 const scrollY = window.pageYOffset;
 
-                // --- Parallax calculation for ALL layers ---
+                // --- Parallax calculation for ALL layers (Speeds adjusted for better visibility) ---
                 // Set 1 Speeds
-                backLayer.style.transform = `translateY(${scrollY * 0.05}px)`;
-                midLayer.style.transform = `translateY(${scrollY * 0.1}px)`;
-                frontLayer.style.transform = `translateY(${scrollY * 0.2}px)`;
+                backLayer.style.transform = `translateY(${scrollY * 0.2}px)`;
+                midLayer.style.transform = `translateY(${scrollY * 0.4}px)`;
+                frontLayer.style.transform = `translateY(${scrollY * 0.7}px)`;
 
-                // Set 2 Speeds (Adjust these values as you like)
-                back2Layer.style.transform = `translateY(${scrollY * 0.05}px)`;
-                far2Layer.style.transform = `translateY(${scrollY * 0.15}px)`;
-                mid2Layer.style.transform = `translateY(${scrollY * 0.3}px)`;
-                front2Layer.style.transform = `translateY(${scrollY * 0.5}px)`;
+                // Set 2 Speeds
+                back2Layer.style.transform = `translateY(${scrollY * 0.1}px)`;
+                far2Layer.style.transform = `translateY(${scrollY * 0.25}px)`;
+                mid2Layer.style.transform = `translateY(${scrollY * 0.45}px)`;
+                front2Layer.style.transform = `translateY(${scrollY * 0.8}px)`;
 
                 // --- Opacity change logic ---
                 if (scrollY > triggerPoint) {
-                    // Scrolled past the trigger point: show set 2, hide set 1
+                    // Show set 2, hide set 1
                     backLayer.style.opacity = '0';
                     midLayer.style.opacity = '0';
                     frontLayer.style.opacity = '0';
@@ -154,7 +199,7 @@
                     mid2Layer.style.opacity = '1';
                     front2Layer.style.opacity = '1';
                 } else {
-                    // Before the trigger point: show set 1, hide set 2
+                    // Show set 1, hide set 2
                     backLayer.style.opacity = '1';
                     midLayer.style.opacity = '1';
                     frontLayer.style.opacity = '1';
