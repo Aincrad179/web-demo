@@ -49,7 +49,7 @@
         /* --- Content Styling --- */
         .content-container { position: relative; z-index: 1; }
         .content-wrapper {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.8); /* ADJUSTED FOR MORE TRANSPARENCY */
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             margin-top: 2rem;
@@ -124,7 +124,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all layer elements
             const layers = {
                 set1: [
                     { el: document.getElementById('back-layer'), speed: 0.2 },
@@ -139,12 +138,11 @@
                 ]
             };
 
-            const triggerPoint = 50; // Pixels to scroll before switching
-            let ticking = false; // Flag for requestAnimationFrame
+            const triggerPoint = 100;
+            let ticking = false;
             let lastScrollY = 0;
 
             function updateLayers() {
-                // Apply parallax transform to all layers
                 for (const set in layers) {
                     layers[set].forEach(layer => {
                         if (layer.el) {
@@ -153,7 +151,6 @@
                     });
                 }
 
-                // Handle the fade-in/fade-out logic
                 if (lastScrollY > triggerPoint) {
                     layers.set1.forEach(layer => layer.el.style.opacity = '0');
                     layers.set2.forEach(layer => layer.el.style.opacity = '1');
