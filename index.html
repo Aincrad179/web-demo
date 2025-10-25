@@ -132,14 +132,14 @@
                     { el: document.getElementById('front-layer'), speed: 0.7 }
                 ],
                 set2: [
-                    { el: document.getElementById('back2-layer'), speed: 0.1 },
+                    { el: document.getElementById('back2-layer'), speed: 0.05 },
                     { el: document.getElementById('far2-layer'), speed: 0.25 },
                     { el: document.getElementById('mid2-layer'), speed: 0.45 },
                     { el: document.getElementById('front2-layer'), speed: 0.8 }
                 ]
             };
 
-            const triggerPoint = 300; // Pixels to scroll before switching
+            const triggerPoint = 50; // Pixels to scroll before switching
             let ticking = false; // Flag for requestAnimationFrame
             let lastScrollY = 0;
 
